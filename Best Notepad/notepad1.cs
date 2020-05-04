@@ -12,7 +12,7 @@ namespace Best_Notepad
 {
     public partial class notepad1 : Form
     {
-        //left side pr + - krny k lye hoti ha
+        
         #region fields 
         //ye 3 viriable save k lye lye ha
         private bool isFileAlreadySave;
@@ -25,7 +25,7 @@ namespace Best_Notepad
         {
             InitializeComponent();
         }
-        //3 br / / / ko ak sath likhny sy ye comments aty ha
+        
         /// <summary>
         /// 
         /// </summary>
@@ -62,14 +62,13 @@ namespace Best_Notepad
 
         private void newFileMaMethod()
         {
-            //mainrichTextBox.Clear();
-            //agr new p clilck kry to ye msg ay
+            
             if (isFileDirty)
             {
 
 
                 DialogResult result = MessageBox.Show("Do you want to save changes ? ", "File Save", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
-                //yes no k lye code
+                
                 switch (result)
                 {
 
@@ -82,17 +81,17 @@ namespace Best_Notepad
                         break;
                     case DialogResult.Cancel:
                         MessageBox.Show("Develop by Evelina ","Go to New File", MessageBoxButtons.OK);
-                        //undoKlyeMethod();
+                        
                         break;
                        
                 }
 
             }
 
-            //mehod ha ye right click kr k iski defination ma ja k dekh skty ha
-            clearScreen(); //agr file ma kch ni ha to clearscreen ka jo khudsy method bnaya ha wo chly
+           
+            clearScreen(); 
 
-            //ye save k lye kia ha k phly koi file ni ha r dirty b ni ha r open b ni ha koi file
+            
             isFileAlreadySave = false;
             currentOpenFileName = "";
 
@@ -130,7 +129,7 @@ namespace Best_Notepad
 
         private void OpenKlyeMethod()
         {
-            //kse b file ko open krny k lye
+            
             OpenFileDialog openfiledialog = new OpenFileDialog();
             openfiledialog.Filter = "Text Files (*.txt)|*.txt|Rich Text Format (*.rtf)|*.rtf|MSWord Files (*.docx)|*.docx|PHP (*.php)|*.php";
 
@@ -142,7 +141,6 @@ namespace Best_Notepad
 
                     mainrichTextBox.LoadFile(openfiledialog.FileName, RichTextBoxStreamType.PlainText);
 
-                //php ki file add krny k lye phly uper likhna pryga fr nichy ye 2 lines if condition k andr
                 if (Path.GetExtension(openfiledialog.FileName) == ".php")
                     mainrichTextBox.LoadFile(openfiledialog.FileName, RichTextBoxStreamType.PlainText);
 
@@ -151,10 +149,8 @@ namespace Best_Notepad
                 if (Path.GetExtension(openfiledialog.FileName) == ".rtf")
                     mainrichTextBox.LoadFile(openfiledialog.FileName, RichTextBoxStreamType.RichText);
 
-                this.Text = Path.GetFileName(openfiledialog.FileName) + " - Notepad "; //file ka caption ma name dna jo b open kry
-                //koi b file open kry to uska name b ajay
+                this.Text = Path.GetFileName(openfiledialog.FileName) + " - Notepad "; 
 
-                //ye save k lye kia ha k phly koi file ni ha r dirty b ni ha r open b ni ha koi file
                 isFileAlreadySave = true;
                 isFileDirty = false;
                 currentOpenFileName = openfiledialog.FileName;
@@ -168,7 +164,7 @@ namespace Best_Notepad
         }
 
         /// <summary>
-        /// undo r redo k lye ak method bnaya ha 
+        
         /// </summary>
         /// <param name="enable"></param>
         private void EnableDisableUndoRedoProcessKaMethog(bool enable)
@@ -211,7 +207,7 @@ namespace Best_Notepad
 
                 this.Text = Path.GetFileName(savefiledialog.FileName) + " -Notepad";
 
-                //ye save k lye kia ha k phly koi file ni ha r dirty b ni ha r open b ni ha koi file
+               
                 isFileAlreadySave = true;
                 isFileDirty = false;
                 currentOpenFileName = savefiledialog.FileName;
@@ -234,9 +230,9 @@ namespace Best_Notepad
 
         private void savefilemanu()
         {
-            if (isFileAlreadySave)//agr file phly he save ha to
+            if (isFileAlreadySave)
             {
-                //ismy sirf currentOpenFileName iska izafa kia ha baki porana code ha jo oper likha hooa ha
+              
 
                 if (Path.GetExtension(currentOpenFileName) == ".txt")
                     mainrichTextBox.SaveFile(currentOpenFileName, RichTextBoxStreamType.PlainText);
@@ -256,7 +252,7 @@ namespace Best_Notepad
 
                 if (isFileDirty)
                 {
-                    //right click kr k iski defination ko check kr skty ha
+                    
                     SaveAsFileKaMethod();
 
                 }
@@ -279,26 +275,26 @@ namespace Best_Notepad
         /// </summary>
         private void clearScreen()
         {
-            mainrichTextBox.Clear(); //phly clear kry dr nichy wala txt ko string m araha ha wo dikhay
+            mainrichTextBox.Clear(); 
             this.Text = "Untitled - Notepad";
             isFileDirty = false;
         }
 
 
         /// <summary>
-        /// jb is application ko run kia jay to ye start ma null ho
+        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
             messagetoolStripStatusLabel.Text = " Normal Text File.. ";
-            //ye save k lye kia ha k phly koi file ni ha r dirty b ni ha r open b ni ha koi file
+            
              isFileAlreadySave = false;
              isFileDirty = false;
              currentOpenFileName = "";
 
-            //YE WO NICHY JO CAPS HA USKY LYE HA
+            
 
              if (Control.IsKeyLocked(Keys.CapsLock))
              {
@@ -316,14 +312,14 @@ namespace Best_Notepad
 
 
         /// <summary>
-        /// mainrichtextbox k lye ha ye
+        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void mainrichTextBox_TextChanged(object sender, EventArgs e)
         {
-            isFileDirty = true; // k file ma kch ha
-            undoToolStripMenuItem.Enabled = true; // jb ye ho to undo nzr ay wrna usko disable kia ta design ma left click kr k enable ko disable ki ta
+            isFileDirty = true; 
+            undoToolStripMenuItem.Enabled = true; 
 
             toolStripButton7.Enabled = true;
             //ye refresh klye ha
@@ -332,8 +328,7 @@ namespace Best_Notepad
 
 
         /// <summary>
-        /// undo k lye ye code ha k phly mainrichtextbox.undo() ka method call ho r
-        /// usky bad redo ka option true hojay yni nzr ay r undo disable hojay
+        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -350,15 +345,15 @@ namespace Best_Notepad
             toolStripButton8.Enabled = true;
             toolStripButton7.Enabled = false;
 
-            //yr refresh wali jga jo hoty ha usky llye
+            
             undoToolStripMenuItem1.Enabled = false;
             redoToolStripMenuItem1.Enabled = true;
 
             undoToolStripMenuItem.Enabled = false;
-            //jb ye undo ho tb redo b enable hojay
+            
         }
         /// <summary>
-        /// ye undo ka opposite ha
+       
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -375,14 +370,14 @@ namespace Best_Notepad
             toolStripButton8.Enabled = false;
             toolStripButton7.Enabled = true;
 
-            //yr refresh wali jga jo hoty ha usky llye
+            
             undoToolStripMenuItem1.Enabled = true;
             redoToolStripMenuItem1.Enabled = false;
 
             undoToolStripMenuItem.Enabled = true;
         }
 
-        //label pr apni website ka link dia ha
+        
         private void label2_Click(object sender, EventArgs e)
         {
             
@@ -390,11 +385,7 @@ namespace Best_Notepad
 
 
         /// <summary>
-        /// login k name sy ak form bnaya ha usko yna object k zrye call kia ha 
-        /// ye agr chlta ha to login page close ho k form1 wala page run hojay 
-        /// r jb wo login wala page run hoga singnout agr krty ha to fr 
-        /// login wala page close hojayga
-        /// q k ye main page ha main page hide hota ha r andr wala page close
+       
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -408,28 +399,28 @@ namespace Best_Notepad
 
 
         /// <summary>
-        /// selectall ka code
+       
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
         private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //select all easy ha ak he line ka code ha
+            
 
             mainrichTextBox.SelectAll();
         }
 
 
         /// <summary>
-        /// date time k lye code
+        
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
         private void dateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //date time b ak he line ka code ha 
+             
 
             mainrichTextBox.SelectedText = DateTime.Now.ToString();
 
@@ -437,7 +428,7 @@ namespace Best_Notepad
 
        
 
-        //font ka kam strt hogya
+        
         private void boldToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FontKlyeMethod(FontStyle.Bold);
@@ -446,7 +437,7 @@ namespace Best_Notepad
 
         private void italicToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //font style k lye ha ye ak ak line ma ak chz ho rhe ha jsy ye bold ka code ha
+            //font style 
             FontKlyeMethod(FontStyle.Italic);
         }
         //method bnaya ha font ka
@@ -475,8 +466,7 @@ namespace Best_Notepad
 
 
         /// <summary>
-        /// format font k lye code instance veriable ma ak r chz private kr k dalni pryge  
-        /// ak event k lye b programmming krni ha ismy/// </summary>
+        /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void formatFontToolStripMenuItem_Click(object sender, EventArgs e)
@@ -495,7 +485,7 @@ namespace Best_Notepad
             //  };
             // fontdialog.ShowColor = true;
 
-            DialogResult result = fontdialog.ShowDialog(); //ye dialogresult khudsy agr na likha jay to uper sy copy krlyn
+            DialogResult result = fontdialog.ShowDialog(); 
 
             if (result == DialogResult.OK)
             {
@@ -536,9 +526,7 @@ namespace Best_Notepad
 
 
         /// <summary>
-        /// text ka color change krny k lye code
-        /// ye dialogresult k lye mne uper sy dialogresult ko cupy kia hoa h
-        /// uper yni isi page ma uper sy na k khe r sy
+        
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -687,7 +675,7 @@ namespace Best_Notepad
 
         private void toolStripStatusLabel1_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://allice9554.000webhostapp.com/");
+            System.Diagnostics.Process.Start("https://000webhostapp.com/");
         }
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
